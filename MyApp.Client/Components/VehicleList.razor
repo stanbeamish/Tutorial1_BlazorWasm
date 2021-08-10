@@ -1,0 +1,32 @@
+﻿@inherits VehicleListBase
+
+<h3>VehicleList</h3>
+
+<div class="vehicle-list">
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Battery Load</th>
+        </tr>
+        @foreach (var vehicle in Vehicles)
+        {
+            <tr>
+                <td>@vehicle.Id</td>
+                <td>@vehicle.Name</td>
+                <td>@vehicle.BatteryLoad</td>
+            </tr>
+        }
+    </table>
+</div>
+
+<style>
+    .vehicle-list {
+        display: flex;
+        background-color: #040204;
+    }
+
+    .vehicle-list td, th {
+        color: white;
+    }
+</style>
