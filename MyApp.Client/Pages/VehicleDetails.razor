@@ -1,0 +1,12 @@
+﻿@page "/vehicledetails/{Id:int}"
+
+<h3>VehicleDetails</h3>
+<form>
+    <input type="text" value="@Id" />
+    <button>Save</button>
+</form>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+}

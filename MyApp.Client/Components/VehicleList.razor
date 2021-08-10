@@ -8,6 +8,7 @@
             <th>ID</th>
             <th>Name</th>
             <th>Battery Load</th>
+            <th></th>
         </tr>
         @foreach (var vehicle in Vehicles)
         {
@@ -15,18 +16,9 @@
                 <td>@vehicle.Id</td>
                 <td>@vehicle.Name</td>
                 <td>@vehicle.BatteryLoad</td>
+                <td><a class="btn btn-primary" href="/vehicledetails/@(vehicle.Id)">View</a></td>
             </tr>
         }
     </table>
 </div>
 
-<style>
-    .vehicle-list {
-        display: flex;
-        background-color: #040204;
-    }
-
-    .vehicle-list td, th {
-        color: white;
-    }
-</style>
