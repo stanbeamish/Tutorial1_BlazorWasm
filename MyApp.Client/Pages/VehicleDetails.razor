@@ -1,12 +1,75 @@
 ﻿@page "/vehicledetails/{Id:int}"
+@inject IVehicleService VehicleService
 
 <h3>VehicleDetails</h3>
-<form>
-    <input type="text" value="@Id" />
-    <button>Save</button>
-</form>
+@if (_vehicle != null)
+{
+    <div class="vehicle-details">
+        <div class="vehicle-data">
+            <form>
+                <div class="mb-3">
+                    <label for="vehicleId" class="form-label">ID</label>
+                    <input id="vehicleId" class="form-control" type="text" readonly value="@_vehicle.Id" />
+                </div>
+                <div class="mb-3">
+                    <label for="vehicleName" class="form-label">Name</label>
+                    <input id="vehicleName" class="form-control" type="text" value="@_vehicle.Name" />
+                </div>
+                <div class="mb-3">
+                    <label for="vehicleTypeId" class="form-label">Vehicle Type ID</label>
+                    <input id="vehicleTypeId" type="text" class="form-control" value="@_vehicle.VehicleTypeId" />
+                </div>
+                <div class="mb-3 form-check">
+                    <input id="isLoaded" type="checkbox" class="form-check-input" @bind=@(_vehicle.IsLoaded) />
+                    <label for="isLoaded" class="form-check-label">Has Loaded Stuff</label>
+                </div>
+                <div class="mb-3">
+                    <label for="maintenanceDate" class="form-label">Vehicle Type ID</label>
+                    <input id="maintenanceDate" type="text" class="form-control" value="@_vehicle.DateForMaintenance" />
+                </div>
+            </form>
+        </div>
+        <div class="vehicle-detail-actions">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button class="btn btn-danger">Abort</button>
+        </div>
+    </div>
+}
+else
+{
+    <div>Vehicle not found.... loading.</div>
+}
 
 @code {
+
+    private Vehicle _vehicle;
+
     [Parameter]
     public int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _vehicle = await VehicleService.GetVehicleByIdAsync(Id);
+    }
 }
+
+
+<style>
+    .vehicle-details {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .vehicle-data {
+        flex: 3 1 auto;
+        padding: 12px;
+    }
+
+    .vehicle-detail-actions {
+        flex: 1 1 auto;
+        margin-top: 32px;
+        padding: 12px;
+        background-color: #efefef;
+    }
+</style>
