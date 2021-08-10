@@ -1,5 +1,6 @@
 ﻿@page "/vehicledetails/{Id:int}"
 @inject IVehicleService VehicleService
+@attribute [Authorize]
 
 <h3>VehicleDetails</h3>
 @if (_vehicle != null)

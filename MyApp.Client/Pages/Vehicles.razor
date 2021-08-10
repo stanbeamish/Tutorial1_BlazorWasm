@@ -1,3 +1,11 @@
 ﻿@page "/vehicles"
 
-<VehicleList />
+<AuthorizeView>
+    <Authorized>
+        <VehicleList />
+    </Authorized>
+    <NotAuthorized>
+        Bitte melden Sie sich an, um die Vehicle-Daten zu sehen.
+    </NotAuthorized>
+</AuthorizeView>
+
